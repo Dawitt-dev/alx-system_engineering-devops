@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-# Display the PID of the current script
-echo "$$"
+#Display header
+echo "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND"
+
+ps ax -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command | awk 'NR<=50'
