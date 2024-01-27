@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Run the 4-to_infinity_and_beyond script in the background
+./4-to_infinity_and_beyond &
+
+# Save the PID of the background process
+bg_process_pid=$!
+
+# kill the background process to finish
+kill "$bg_process_pid"
+
+# Notify when the process is terminated
+echo "Terminated"
