@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#A script that displays all active IPv4 IPs on the machine it’s executed on.
+
+# Use ifconfig to get network interface information
+hostname -I | cut -d' ' -f1 ; hostname -i
