@@ -1,0 +1,15 @@
+Diagram Link: https://imgur.com/Gx1ni0b
+
+The infrastructure design involves three key components. Firstly, a web server (Nginx) is responsible for serving static content and handling initial HTTP requests. Secondly, an application server hosts the application logic, processing dynamic content. Finally, a MySQL database stores website data and interacts with the application server.
+
+A load balancer, specifically HAproxy, is implemented to distribute incoming traffic between the two servers, ensuring load balancing. The load balancer employs a Round Robin distribution algorithm, evenly distributing requests. The setup is configured as Active-Active, allowing both servers to handle requests simultaneously.
+
+The application files, containing the website's logic and files, are an integral part of the infrastructure.
+
+In terms of the explanation, the load balancer serves the purpose of improving website performance by distributing traffic, enhancing fault tolerance, and ensuring high availability. The Round Robin algorithm is used to distribute incoming requests equally among the available servers, preventing overloading of a single server. The Active-Active setup allows both servers to actively handle requests simultaneously, optimizing resource utilization.
+
+The database component is configured as a Primary-Replica cluster. The primary node accepts both write and read operations, ensuring data consistency. In contrast, the replica node mirrors data from the primary node and is primarily used for read operations, reducing the load on the primary node.
+
+Turning to the identified issues with the infrastructure, potential single points of failure include the web server, application server, and load balancer. If any of these components fail, the website's accessibility may be compromised. Security concerns arise from the absence of a firewall, exposing servers to potential unauthorized access, and the lack of HTTPS, leaving data vulnerable to interception. Furthermore, the infrastructure lacks monitoring tools, making it challenging to identify and address performance issues or potential failures promptly.
+
+In summary, while the designed infrastructure meets basic requirements, addressing single points of failure, security issues, and implementing monitoring tools are crucial for ensuring reliability, security, and performance.
