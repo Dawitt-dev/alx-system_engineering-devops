@@ -1,0 +1,27 @@
+Diagram Link: https://imgur.com/3dLj22A
+
+In crafting the infrastructure design, key components are strategically employed to bolster security, encrypt traffic, and facilitate robust monitoring across the entire system.
+
+Servers, namely the web server (Nginx), play distinct roles in handling static content and initial HTTP requests, while the application server is tasked with hosting application logic and processing dynamic content. The database (MySQL) serves as a repository for website data and facilitates interactions with the application server.
+
+Security components, notably firewalls, are strategically placed to exert control over incoming and outgoing network traffic. This serves the dual purpose of monitoring and fortifying against unauthorized access, potential attacks, and overall security threats. Complementing this, an SSL certificate is integrated to enable HTTPS, securing communication between clients and servers. This not only encrypts data in transit, preventing eavesdropping but also ensures the integrity and confidentiality of the transmitted data.
+
+The monitoring aspect is integral to the infrastructure, with monitoring clients such as Sumo Logic actively collecting and analyzing log and performance data. This aids in the swift identification and resolution of issues, contributing to optimal performance and proactive infrastructure maintenance.
+
+Firewalls, fulfilling the role of network sentinels, serve to control and monitor incoming and outgoing traffic. They provide an additional layer of security, fortifying the system against potential threats.
+
+The SSL certificate, acting as a cryptographic guardian, is designed to enable secure communication through HTTPS. This pivotal component ensures the confidentiality and integrity of data during transit, enhancing overall security.
+
+Monitoring, a proactive measure against potential issues, is devised to detect and address performance anomalies, potential outages, or security incidents. It facilitates ongoing maintenance and optimization of the infrastructure.
+
+In the realm of data collection for monitoring, specialized clients log events, performance metrics, and other relevant information. Tools like Sumo Logic then aggregate, analyze, and present this data, offering actionable insights for informed decision-making.
+
+To monitor the Query Per Second (QPS) metric of the web server, monitoring alerts are established. This approach, utilizing monitoring clients, enables the tracking of QPS metrics and the receipt of alerts for abnormal behavior.
+
+Several critical issues are identified within the infrastructure. The termination of SSL at the load balancer level poses a risk, potentially leaving data unencrypted between the load balancer and web server. To address this, a recommended solution involves implementing end-to-end SSL encryption, terminating SSL at the web server.
+
+The reliance on a single MySQL server capable of accepting writes presents another concern, as it constitutes a single point of failure for write operations. To mitigate this risk, the implementation of MySQL replication with a primary and replica node is proposed, ensuring high availability.
+
+The potential drawbacks associated with identical components across servers are acknowledged, as uniformity may lead to a lack of diversity and vulnerabilities. To counter this, suggestions include introducing diversity in software versions, configurations, or implementing additional security measures to mitigate associated risks.
+
+In summary, the meticulously designed infrastructure incorporates firewalls, SSL certificates, and monitoring components to elevate security, encrypt traffic, and ensure effective ongoing monitoring. Addressing identified issues, particularly those related to SSL termination, MySQL write operations, and component diversity, will fortify the infrastructure's overall resilience.
