@@ -1,4 +1,4 @@
-Diagram Link: https://imgur.com/Gx1ni0b
+Diagram Link: https://imgur.com/fkOtlSd
 
 The infrastructure design involves three key components. Firstly, a web server (Nginx) is responsible for serving static content and handling initial HTTP requests. Secondly, an application server hosts the application logic, processing dynamic content. Finally, a MySQL database stores website data and interacts with the application server.
 
