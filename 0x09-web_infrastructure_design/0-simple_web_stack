@@ -1,4 +1,4 @@
-Diagram link: https://imgur.com/a/vzfIijO
+Diagram link: https://imgur.com/i4IIb2Z
 
 A server is a powerful computer responsible for storing data, running applications, and providing services to other computers (clients) over a network. In the context of web infrastructure, it serves as the host for the entire system.This simple stack has A linux OS,and an Apache web server(Nginx), a MySQL database and a PHP based App server.
 
