@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Connect to the server using the private key ~/.ssh/school
+ssh -i ~/.ssh/school ubuntu@100.26.255.45 << EOF
+# Commands to be executed on the server
+exit
+EOF
+
+echo "Connection to 100.26.255.45 closed."
+
