@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # Connect to the server using the private key ~/.ssh/school
-ssh -i ~/.ssh/school ubuntu@35.153.67.14 << EOF
+ssh ubuntu@35.153.67.14 -i ~/.ssh/school
 # Commands to be executed on the server
 exit
 EOF
 
 echo "Connection to 35.153.67.14  closed."
-
