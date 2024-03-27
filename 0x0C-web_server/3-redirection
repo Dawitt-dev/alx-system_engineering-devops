@@ -1,9 +1,35 @@
 #!/usr/bin/env bash
-# redirecting to another page
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo "Hello World!" > sudo /var/www/html/index.html
-sudo sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-enabled/redirect_me
+# Install Nginx if not already installed
+apt-get update -y
+apt-get install nginx -y
 
-sudo service nginx start
+# Create a configuration file for redirection
+cat << EOF > /etc/nginx/sites-available/redirect_me
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name _;
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+}
+EOF
+
+# Remove the default server block configuration using sed
+sed -i '/default_server;/d' /etc/nginx/sites-available/default
+
+# Add the redirection configuration to the default server block using sed
+sed -i '/server_name _;/r /etc/nginx/sites-available/redirect_me' /etc/nginx/sites-available/default
+
+# Test Nginx configuration for errors
+nginx -t
+
+# If the configuration test is successful, reload Nginx to apply changes
+if [ $? -eq 0 ]; then
+    service nginx reload
+else
+    echo "Nginx configuration test failed. Please check the configuration file."
+fi
