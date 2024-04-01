@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Update package lists and install Nginx
+apt-get update -y
+apt-get install nginx -y
+
+# Create a default index.html file with "Hello World!" message 
+echo "Hello World!" > /var/www/html/index.html
+# Restart Nginx
+service nginx start
