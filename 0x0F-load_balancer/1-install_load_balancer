@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Install and configure HAProxy load balancer to lb-01 server.
+
+CONFGF="\\\nlisten appname 0.0.0.0:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 375453-web-01 35.153.67.14 check\n\tserver 375453-web-02 52.91.149.193 check\n"
+
+sudo apt-get update
+sudo apt-get -y install nginx
+#version 1.5 and above
+sudo apt-get install -y haproxy
+#enable HAproxy can be managed via an init script
+sudo sed -i "s/ENABLED=0/ENABLED=1/" /etc/default/haproxy
+# include roundrobin and two servers
+sudo sed -i "\$a $CONFGF" /etc/haproxy/haproxy.cfg
+
+sudo service haproxy start
