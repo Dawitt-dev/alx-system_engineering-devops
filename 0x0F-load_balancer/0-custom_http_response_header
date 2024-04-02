@@ -2,8 +2,10 @@
 # Update package lists and install Nginx
 apt-get update -y
 apt-get install nginx -y
-
+ufw allow 'Nginx HTTP'
 # Create a default index.html file with "Hello World!" message 
 echo "Hello World!" > /var/www/html/index.html
+sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+sed -i '/listen 80 default_server;/a add_header X-Served-By $hostname;' /etc/nginx/sites-available/default
 # Restart Nginx
 service nginx start
