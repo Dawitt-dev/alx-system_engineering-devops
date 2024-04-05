@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Function to display information about a subdomain
+display_info() {
+    local subdomain="$1"
+    local domain="$2"
+    local result=$(dig +short "$subdomain.$domain")
+
+    if [ -n "$result" ]; then
+        local record_type=$(echo "$result" | awk '{ print length($0) ? "A" : "CNAME" }')
+        local destination=$(echo "$result" | awk '{ print length($0) ? $0 : "N/A" }')
+        echo "The subdomain $subdomain is a $record_type record and points to $destination"
+    else
+        echo "No record found for the subdomain $subdomain"
+    fi
+}
+
+# Main function
+main() {
+    local domain="$1"
+    local subdomain="$2"
+
+    if [ -z "$subdomain" ]; then
+        subdomains=("www" "lb-01" "web-01" "web-02")
+        for sub in "${subdomains[@]}"; do
+            display_info "$sub" "$domain"
+        done
+    else
+        display_info "$subdomain" "$domain"
+    fi
+}
+
+# Check if required argument is provided
+if [ "$#" -lt 1 ]; then
+    echo "Usage: $0 <domain> [<subdomain>]"
+    exit 1
+fi
+
+main "$@"
