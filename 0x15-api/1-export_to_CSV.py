@@ -30,15 +30,15 @@ def gather_data(employee_id):
         csv_writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
 
         # Write header
-        csv_writer.writerow(["USER_ID", "USERNAME",
-                             "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+       # csv_writer.writerow(["USER_ID", "USERNAME",
+        #                     "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
         # Write tasks data
         for task in todo_data:
             csv_writer.writerow([user_data['id'], user_data['username'],
                                  str(task['completed']), task['title']])
 
-    print("Tasks exported to {}".format(csv_filename))
+    #print("Tasks exported to {}".format(csv_filename))
 
 
 if __name__ == "__main__":
