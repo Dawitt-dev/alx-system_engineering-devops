@@ -3,9 +3,10 @@
 Gathers data from an API and exports TODO list progress for a given
 employee ID in CSV format
 """
-from sys import argv
-import requests
+
 import csv
+import requests
+from sys import argv
 
 
 def gather_data(employee_id):
