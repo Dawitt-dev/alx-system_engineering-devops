@@ -38,7 +38,7 @@ def gather_data(employee_id):
             csv_writer.writerow([user_data['id'], user_data['username'],
                                  str(task['completed']), task['title']])
 
-    print(f"Tasks exported to {csv_filename}")
+    print("Tasks exported to {}".format(csv_filename))
 
 
 if __name__ == "__main__":
