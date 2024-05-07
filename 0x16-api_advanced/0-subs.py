@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""a func that queries the Reddit API and returns the number of subscribers"""
 import requests
 
 
