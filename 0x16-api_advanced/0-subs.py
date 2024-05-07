@@ -11,19 +11,4 @@ def number_of_subscribers(subreddit):
 
     if response.status_code != 200:
         return 0
-
-    try:
-        data = response.json()
-        return data['data']['subscribers']
-    except KeyError:
-        # Handle missing subscriber data
-        return 0
-
-if __name__ == "__main__":
-    import sys
-    
-    if len(sys.argv) < 2:
-        print("Please pass an argument for the subreddit to search.")
-    else:
-        subreddit = sys.argv[1]
-        print(number_of_subscribers(subreddit))
+    return response.json().get('data').get('subscribers')
