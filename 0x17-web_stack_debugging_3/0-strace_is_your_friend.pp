@@ -6,8 +6,3 @@ exec { 'fix-wordpress':
   refreshonly => true,
   notify      => Service['apache2'],
 }
-
-# Ensure Apache service is running
-service { 'apache2':
-  ensure => 'running',
-}
